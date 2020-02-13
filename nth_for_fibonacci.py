@@ -4,6 +4,7 @@ import decimal
 
 
 def nth_fib(x, _len):
+    """Calculating nth term through Binet's formula with accurate intefer precision"""
     decimal.getcontext().prec = _len * 2
     nth_fib = (
         (1 + decimal.Decimal(5).sqrt()) ** x - (1 - decimal.Decimal(5).sqrt()) ** x
@@ -12,6 +13,7 @@ def nth_fib(x, _len):
 
 
 def nth_fib_without_precision(x, _len):
+    """Calculating nth term through Binet's formula with no accurate precision (incorrect digits after 13th)"""
     nth_fib = (
         (1 + decimal.Decimal(5).sqrt()) ** x - (1 - decimal.Decimal(5).sqrt()) ** x
     ) / (2 ** x * decimal.Decimal(5).sqrt())
@@ -23,6 +25,7 @@ def nth_fib_len(x, _len):
 
 
 def nth_for_fib(number):
+    """Yields the nth position"""
     str_number = str(number)
     _len = len(str_number)
 
@@ -51,4 +54,22 @@ def nth_for_fib(number):
     for _ in range(nth[0], nth[1] + 1):
         if list(str_number)[:13] == list(str(nth_fib_without_precision(_, _len)))[:13]:
             yield _
+    # return nth_fib(868, _len)88793027306605937532517516910637647045239090036365766884466525589158360259770006891772711976920559280382807770394537471560061517120086971996377683290300054868066659454250625417891167369401
+    # return nth
 
+
+# if __name__ == "__main__":
+#     print(
+#         list(
+#             nth_for_fib(
+#                 2584
+#             )
+#         )
+#     )
+# import timeit
+
+# print(
+#     timeit.timeit(
+#         "nth_for_fib(2350704430272641239071841033501890806135341594051678146868727563621503575841361361660546174279787382902052764874870847641179)", "from __main__ import nth_for_fib", number=1000000
+#     )
+# )
